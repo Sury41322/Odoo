@@ -24,6 +24,8 @@ class SystrayIcon extends Component {
             coords : null,
             time : null,
             icon : null,
+            temp : null,
+            fahrenheit : null
        })
     }
     _get_location() {
@@ -48,6 +50,7 @@ class SystrayIcon extends Component {
         this.state.coords = coords
         this.state.weather = await this.get_weather_data()
         this.state.icon = Weather_icons[(this.state.weather.weather[0].main).toLowerCase()]
+        this.state.temp = this.state.weather.main.temp
     }
     async get_weather_data(){
         const result = await rpc("/weather/status",
@@ -74,9 +77,30 @@ class SystrayIcon extends Component {
             });
             }
             else{
+                document.getElementById("temp_metrics").value = "c"
+                this.state.fahrenheit = null
                 this.state.weather = result
                 this.state.icon = Weather_icons[(result.weather[0].main).toLowerCase()]
+                this.state.temp = this.state.weather.main.temp
             }
+        }
+    }
+    temp_metrics(){
+        var elm = document.getElementById("temp_metrics").value
+        if (this.state.weather){
+        if (elm == "f"){
+            var celsius = this.state.weather.main.temp
+            var Fahrenheit = (celsius * 1.8) + 32
+            this.state.fahrenheit = 'True'
+            this.state.temp = Fahrenheit
+        }
+        else{
+            this.state.fahrenheit = null
+            this.state.temp = this.state.weather.main.temp
+        }
+        }
+        else{
+        return 0
         }
     }
 }
