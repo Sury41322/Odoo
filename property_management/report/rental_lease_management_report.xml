@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_rental_lease_management">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+<!--                    <div t-field="doc.company_id"-->
+<!--                         t-options='{"widget": "contact", "fields": ["phone", "name","email","city","country"]}'/>-->
+                    <div class="col-12 text-end">
+                        <h5>Date :
+                            <span t-field="doc.create_date"/>
+                        </h5>
+                    </div>
+                    <div class="page">
+                        <div class="oe_title"/>
+                        <div class="col-6">
+                            <h1>Rent/Lease Report</h1>
+                        </div>
+                        <div class="col-6">
+                            <t t-if="len(doc.tenant_ids) == 1">
+                                <h4>Tenant :
+                                    <span t-esc="docs.tenant_ids.name"/>
+                                </h4>
+                            </t>
+                        </div>
+                        <br/>
+                    </div>
+                    <div class="oe_structure">
+                        <table class="table">
+                            <thead>
+                                <th>Order</th>
+                                <t t-if="len(doc.tenant_ids) != 1">
+                                    <th>Tenant</th>
+                                </t>
+                                <th>Property</th>
+                                <th>Owner</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>From Date</th>
+                                <th>End Date</th>
+                                <th>State</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="record" t-as="record">
+                                    <t t-foreach="record" t-as="rec">
+                                        <tr>
+                                            <td>
+                                                <span t-esc="rec['name']"/>
+                                            </td>
+                                            <t t-if="len(doc.tenant_ids) != 1">
+                                                <td>
+                                                    <span t-esc="rec['tenant']"/>
+                                                </td>
+                                            </t>
+                                            <td>
+                                                <span t-esc="rec['property']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rec['owner']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rec['type']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rec['amount']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rec['start_date']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rec['end_date']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rec['states']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

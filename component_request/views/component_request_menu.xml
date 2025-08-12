@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="component_request_root" name="Component Request" sequence="1"/>
+    <menuitem id="component_request_main_menu" name="Component Request" parent="component_request_root"
+              action="component_request_form" sequence="1"/>
+</odoo>

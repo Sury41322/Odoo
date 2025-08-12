@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="mail_template_order_confirmation" model="mail.template">
+            <field name="name">Confirm : Email Template</field>
+            <field name="model_id" ref="property_management.model_rental_lease_management"/>
+            <field name="subject">Order Confirmation</field>
+            <field name="email_to">{{object.tenant_id.email}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="justify-content: center;background-color: #714B67;
+                    padding:0.6rem;padding-left: 35px;text-decoration: none; color: #fff; border-radius: 5px;
+                    font-size:13px;width:40%">
+                        <h2>
+                            Hi,
+                            <t t-out="object.tenant_id.name"/>
+                        </h2>
+                        <div>
+                            <h3>This mail is to inform you that<t t-out="object.name"/>have been confirmed.
+                            </h3>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    Regards,
+                    <br/>
+                    <t t-out="object.company_id.name"/>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <!--       expired information mail-->
+        <record id="mail_template_order_expired" model="mail.template">
+            <field name="name">Expired : Email Template</field>
+            <field name="model_id" ref="property_management.model_rental_lease_management"/>
+            <field name="subject">Order Expired</field>
+            <field name="email_to">{{object.tenant_id.email}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="justify-content: center;background-color: #714B67;
+                     padding:0.6rem;padding-left: 35px;text-decoration: none; color: #fff; border-radius: 5px;
+                      font-size:13px;width:40%">
+                        <h2>
+                            Hi,
+                            <t t-out="object.tenant_id.name"/>
+                        </h2>
+                        <div>
+                            <h3>This mail is to inform you that<t t-out="object.name"/>have been Expired.
+                            </h3>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    Regards,
+                    <br/>
+                    <t t-out="object.company_id.name"/>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <!--       closing email template-->
+        <record id="mail_template_order_closing" model="mail.template">
+            <field name="name">Closing : Email Template</field>
+            <field name="model_id" ref="property_management.model_rental_lease_management"/>
+            <field name="subject">Order Closing</field>
+            <field name="email_to">{{object.tenant_id.email}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="justify-content: center;background-color: #714B67;
+                     padding:0.6rem;padding-left: 35px;text-decoration: none; color: #fff; border-radius: 5px;
+                     font-size:13px;width:40%">
+                        <h2>
+                            Hi,
+                            <t t-out="object.tenant_id.name"/>
+                        </h2>
+                        <div>
+                            <h3>
+                                This mail is to inform you that
+                                <t t-out="object.name"/>
+                                have been Closed.
+                            </h3>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    Regards,
+                    <br/>
+                    <t t-out="object.company_id.name"/>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <!--       payment alert template-->
+        <record id="mail_template_payment_alert" model="mail.template">
+            <field name="name">Payment : Follow Up</field>
+            <field name="model_id" ref="property_management.model_rental_lease_management"/>
+            <field name="subject">Payment : Follow Up</field>
+            <field name="email_to">{{object.tenant_id.email}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="justify-content: center;background-color: #714B67;
+                     padding:0.6rem;padding-left: 35px;text-decoration: none; color: #fff; border-radius: 5px;
+                     font-size:13px;width:40%">
+                        <h2>
+                            Hi,
+                            <t t-out="object.tenant_id.name"/>
+                        </h2>
+                        <div>
+                            <h3>
+                                This mail is to inform you that
+                                <t t-out="object.name"/>
+                                of
+                                <t t-out="object.sub_total"/>
+                                payment is still pending.
+                            </h3>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    Regards,
+                    <br/>
+                    <t t-out="object.company_id.name"/>
+                    <br/>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+</odoo>

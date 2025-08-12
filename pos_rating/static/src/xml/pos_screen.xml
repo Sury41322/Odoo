@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+   <t t-name="pos_rating.ProductCard" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
+       <xpath expr="//article" position="inside">
+           <div class="product-rating">
+        <t t-set="val_integer" t-value="Math.floor(Rating)"/>
+               <div class="o_website_rating_static" style="display:inline">
+                   <t t-foreach="Array(val_integer)" t-as="num" t-key="num_index">
+                <i class="fa fa-star" role="img"></i>
+                    </t>
+                    </div>
+           </div>
+       </xpath>
+   </t>
+</templates>

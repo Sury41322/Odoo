@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="payment_provider_paytrail" model="payment.provider">
+        <field name="code">paytrail</field>
+        <field name="name">paytrail</field>
+        <field name="state">disabled</field>
+         <field name="is_published">True</field>
+        <field name="image_128" type="base64" file="payment_paytrail_nets/static/src/img/paytrail.png"/>
+        <field name="payment_method_ids"
+               eval="[Command.set([
+                         ref('payment_paytrail_nets.payment_method_paytrail_nets'),
+                     ])]"
+        />
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+    </record>
+</odoo>

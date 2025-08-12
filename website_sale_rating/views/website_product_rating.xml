@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Product Card -->
+    <template id="product_rating_products_item_card" inherit_id="website_sale.products_item" name="Show Rating in Card">
+        <xpath expr="//div[hasclass('o_wsale_product_information_text')]" position="inside">
+            <span>
+                <t t-set="val_integer" t-value='int(product.rating)'/>
+                <div class="o_website_rating_static" style="display:inline">
+                    <t t-foreach="range(val_integer)" t-as="num">
+                        <i class="fa fa-star" role="img"></i>
+                    </t>
+                </div>
+            </span>
+        </xpath>
+    </template>
+    <!--Product Info-->
+    <template id="product_rating_field" inherit_id="website_sale.product" name="Show Rating">
+        <xpath expr="//div[@id='product_details']/form" position="before">
+            <span>
+                <t t-set="val_integer" t-value='int(product.rating)'/>
+                <div class="o_website_rating_static" style="display:inline">
+                    <t t-foreach="range(val_integer)" t-as="num">
+                        <i class="fa fa-star" role="img"></i>
+                    </t>
+                </div>
+            </span>
+        </xpath>
+    </template>
+</odoo>

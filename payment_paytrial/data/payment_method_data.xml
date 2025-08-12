@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="payment_method_paytrial" model="payment.method">
+        <field name="name">paytrial</field>
+        <field name="code">paytrial</field>
+        <field name="sequence">1</field>
+        <field name="image" type="base64" file="payment_paytrial/static/img/paytrial.png"/>
+        <field name="support_tokenization">True</field>
+        <field name="support_express_checkout">False</field>
+        <field name="support_refund">partial</field>
+    </record>
+</odoo>

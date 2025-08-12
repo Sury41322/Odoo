@@ -1,0 +1,12 @@
+.pos .product-list .product-rating{
+    padding: 0.1rem;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius : 10px 0 0 0;
+
+}
+.o_website_rating_static{
+    color: yellow;
+}

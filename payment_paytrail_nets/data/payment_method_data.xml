@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <record id="payment_method_paytrail_nets" model="payment.method">
+        <field name="name">Paytrail</field>
+        <field name="image" type="base64" file="payment_paytrail_nets/static/src/img/paytrail.png"/>
+        <field name="code">paytrail_1</field>
+        <field name="sequence">1</field>
+        <field name="support_tokenization">False</field>
+        <field name="support_express_checkout">False</field>
+        <field name="support_refund">none</field>
+    </record>
+    <!--account payment method line creation        -->
+    <record id="account_payment_method_paytrail_nets" model="account.payment.method">
+        <field name="name">Paytrail</field>
+        <field name="code">paytrail</field>
+        <field name="payment_type">inbound</field>
+    </record>
+</odoo>

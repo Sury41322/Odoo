@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+   <t t-name="pos_rating.Orderline"
+      t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-name')]" position="inside">
+            <t t-set="val_integer" t-value="Math.floor(line.receipt_pos_rating)"/>
+            <div>
+            <div class="o_website_rating_static" style="display:inline">
+                   <t t-foreach="Array(val_integer)" t-as="num" t-key="num_index">
+                        <i class="fa fa-star checked" role="img"></i>
+                    </t>
+            </div>
+            </div>
+       </xpath>
+   </t>
+</templates>

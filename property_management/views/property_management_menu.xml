@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Root Menu-->
+    <menuitem id="property_management_root" name="Property Management" sequence="1"/>
+    <!--    1 - Sub menu under Parent-->
+    <menuitem id="property_management_orders" name="Orders" parent="property_management_root" sequence="1"/>
+    <!--    Sub menu of Configuration with Action-->
+    <menuitem id="property_management_orders_rental_lease" name="Rental/Lease" parent="property_management_orders"
+              action="rental_lease_management_form" sequence="1"/>
+    <!--     2 - Sub menu under Parent-->
+    <menuitem id="property_management_configuration" name="Configuration" parent="property_management_root"
+              sequence="3"/>
+    <!--    sub menu under orders with action Properties-->
+    <menuitem id="property_management_configuration_properties" name="Properties"
+              parent="property_management_configuration" action="property_management_form" sequence="1"/>
+    <!--    sub menu under orders with action Tags-->
+    <menuitem id="property_management_configuration_tags" name="Tags"
+              parent="property_management_configuration" action="property_management_tags" sequence="2"/>
+    <!-- 3 - sub menu under parent-->
+    <menuitem id="property_management_reporting" name="Reporting"
+              parent="property_management_root" sequence="2"/>
+    <!--    submenu under reporting -->
+    <menuitem id="property_management_reporting_rental_lease" name="Rental/Lease"
+              parent="property_management_reporting"
+              action="rental_lease_management_make_report_form" sequence="1" />
+</odoo>

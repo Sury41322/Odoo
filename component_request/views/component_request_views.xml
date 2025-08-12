@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    component request list view-->
+    <record id="component_request_view_list" model="ir.ui.view">
+        <field name="name">component_request_view_list</field>
+        <field name="model">component.request</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="responsible_user_id"/>
+                <field name="state" decoration-success="state in 'done'"
+                       decoration-info="state in 'submitted'"
+                       decoration-warning ="state in 'approved'"
+                       decoration-danger="state in 'rejected'"
+                       widget="badge"/>
+            </list>
+        </field>
+    </record>
+    <!--    component request form view-->
+    <record id="component_request_view_form" model="ir.ui.view">
+        <field name="name">component_request_view_form</field>
+        <field name="model">component.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit_button" type="object" string="Submit" class="oe_highlight"
+                            invisible="state not in 'draft'"
+                            groups="component_request.group_component_request_employee"/>
+                    <button name="action_approve_button" type="object" string="Approve"
+                            class="oe_highlight"
+                            groups="component_request.group_component_request_manager"
+                            invisible="state not in 'submitted'"/>
+                    <button name="action_deny_button" type="object" string="Deny"
+                            groups='component_request.group_component_request_manager'
+                            invisible="state not in ['submitted']"/>
+                    <button name="action_create_rfq_button" type="object" string="Create RFQ"
+                            class="oe_highlight" groups='component_request.group_component_request_head'
+                            invisible="state not in 'approved'"/>
+                    <button name="action_reject_button" type="object" string="Reject"
+                            groups='component_request.group_component_request_head'
+                            invisible="state not in ['approved']"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submitted,done,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_purchase_order" type="object" class="oe_stat_button"
+                                icon="fa-pencil-square-o" invisible="purchase_order_count &lt; 1">
+                            <field name="purchase_order_count" widget="statinfo" string="Purchase Order"/>
+                        </button>
+                        <button name="action_view_internal_transfer" type="object" class="oe_stat_button"
+                                icon="fa-pencil-square-o" invisible="internal_transfer_count &lt; 1">
+                            <field name="internal_transfer_count" widget="statinfo" string="Transfers"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <div class="oe_title">
+                                <field name="name" class="h1" readonly="True"/>
+                            </div>
+                            <field name="responsible_user_id" required="True" readonly="state not in 'draft'"/>
+                        </group>
+                        <notebook>
+                            <page string="Order Lines">
+                                <field name="order_line_ids" readonly="state not in 'draft'">
+                                    <list editable="bottom">
+                                        <field name="component_id"/>
+                                        <field name="request_type" required="True"/>
+                                        <field name="seller_ids" widget="many2many_tags" required="True"
+                                               invisible="request_type not in 'purchase_order' "/>
+                                        <field name="from_location_id"
+                                               invisible="request_type not in 'internal_transfer'"
+                                               required="True"/>
+                                        <field name="to_location_id" invisible="request_type not in 'internal_transfer'"
+                                               required="True"/>
+                                        <field name="quantity" invisible="request_type not in 'purchase_order'"/>
+                                        <field name="price" invisible="request_type not in 'purchase_order'"
+                                               string="Cost Price"/>
+                                        <field name="total_price" invisible="request_type not in 'purchase_order'"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group class="oe_subtotal_footer fw-bolder">
+                            <div>
+                                <group>
+                                    <field name="sub_total" string="TOTAL "/>
+                                </group>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    component request action form-->
+    <record id="component_request_form" model="ir.actions.act_window">
+        <field name="name">Component Request</field>
+        <field name="res_model">component.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>Create your first component request.</p>
+        </field>
+    </record>
+</odoo>

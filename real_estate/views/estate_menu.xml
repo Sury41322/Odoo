@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+        <menuitem id="menu_real_estate_root" name="Real Estate"/>
+        <!--    Sub Menu without Action-->
+
+            <menuitem id="menu_real_estate_advertisment" name="Advertisment" parent="menu_real_estate_root"/>
+
+
+        <!--  Sub menu with action  -->
+                <menuitem id="menu_real_estate_advertisment_properties" name="Properties" parent="menu_real_estate_advertisment" action="action_real_estate"/>
+<!--                <menuitem id="menu_real_estate_advertisment_offers" name="Offers" parent="menu_real_estate_advertisment" action="action_real_estate_property_offer"/>-->
+        <!--        sub menu under the parent-->
+            <menuitem id="menu_real_estate_settings" name="Settings" parent="menu_real_estate_root" />
+        <!--        Sub Menu For setting with action-->
+                <menuitem id="menu_real_estate_settings_property_type" name="Property Type" parent="menu_real_estate_settings" action="action_real_estate_property_type"/>
+                <menuitem id="menu_real_estate_settings_property_tags" name="Property Tags" parent="menu_real_estate_settings" action="action_real_estate_tags"/>
+
+
+    </data>
+</odoo>

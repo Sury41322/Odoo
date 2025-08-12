@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--Property Dynamic Snippet-->
+<templates xml:space="preserve">
+    <t t-name="property_management.property_data">
+        <div class="container mt-5 mb-5">
+            <div id="course_carousel" class=" carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner row" role="listbox">
+                    <t t-foreach="chunks" t-as="chunk" t-key="chunk.key">
+                        <div t-att-class="chunk.is_active ? 'carousel-item active' : 'carousel-item'">
+                            <div class="row">
+                                <t t-foreach="chunk" t-as="item" t-key="item.key">
+                                    <div data-name="Card" class="col-mb-6 col-3">
+                                        <div class="s_card o_card_img_top card o_cc o_cc1 o_colored_level">
+                                            <figure class="o_card_img_wrapper ratio ratio-4x3 mb-0">
+                                                    <t t-if="item.property_image">
+                                                        <img t-attf-src="/web/image?model=property.management&amp;field=property_image&amp;id={{item.id}}"
+                                                             class="o_record_cover_component o_record_cover_image"/>
+                                                    </t>
+                                                <t t-else="">
+                                                        <img src="/property_management/static/src/img/rent.png"
+                                                             width="90"
+                                                             class="o_card_img card-img-top"/>
+                                                </t>
+                                            </figure>
+                                            <div class="card-body">
+                                                <a aria-label="Link to product" t-attf-href="/property/#{item.id}">
+                                                <h3 class="card-title h5-fs" style="text-align: center;">
+                                                    <t t-esc="item.name"/></h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <a t-attf-href="#course_carousel" class="carousel-control-prev" data-bs-slide="prev"
+                           role="button"
+                           aria-label="Previous" title="Previous">
+                            <span class="fa fa-chevron-circle-left fa-2x" style="font-size:48px;color:black"/>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a t-attf-href="#course_carousel" class="carousel-control-next" data-bs-slide="next"
+                           role="button"
+                           aria-label="Next"
+                           title="Next">
+                                <span class="fa fa-chevron-circle-right fa-2x" style="font-size:48px;color:black"/>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

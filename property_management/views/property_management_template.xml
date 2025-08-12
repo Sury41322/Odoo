@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="property_management_web_form" model="website.menu">
+        <field name="name">Rent/Lease Order</field>
+        <field name="url">order_webform</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+    <template id="create_order" name="Rent/Lease Order">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container new_form pt-5 pb-5">
+                    <h1>Rental/Lease Order Form</h1>
+                    <br/>
+                    <div class="property_form">
+                        <form role="form" action="order_webform/submit" method="post">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="row">
+                                <div class="alert alert-danger d-none" id="alert">
+                                    <strong>Wraning!</strong>
+                                    Please Check if you have added property and Date!!!
+                                </div>
+                                <div class="form-group property_management_form col-4">
+                                    <label for="tenant_id" class="col-sm-2 form-label">Tenant</label>
+                                    <h3 id="tenant_id" name="tenant_id" t-attf-data-id="#{tenant.id}">
+                                        <t t-esc="tenant.name"/>
+                                    </h3>
+                                </div>
+                                <br/>
+                                <div class="form-group col-4">
+                                    <label for="end_date" class="col-sm-2 form-label">End Date</label>
+                                    <input type="date" id="end_date" class="form-control" name="end_date"
+                                           required='True'/>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <span class="col-sm-2 col-form-label">Property Type</span>
+                                    <div class="mt-2">
+                                        <input type="radio" id="Rented" name="type" value="Rented" checked="checked"/>
+                                        <label for="Rented">Rent</label>
+                                        <input type="radio" id="Leased" name="type" value="Leased"/>
+                                        <label for="Leased">Lease</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="form-group">
+                                <div class='row'>
+                                    <div class="form-group col-12 show_total_project">
+                                        <div class="row s_col_no_bgcolor">
+                                            <table class="table table-bordered mt-3"
+                                                   id="property_table">
+                                                <thead>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>
+                                                                Property
+                                                            </strong>
+                                                        </td>
+                                                        <td>
+                                                            <strong>
+                                                                Owner
+                                                            </strong>
+                                                        </td>
+                                                        <td>
+                                                            <strong>
+                                                                Amount
+                                                            </strong>
+                                                        </td>
+                                                        <td width="5%"/>
+                                                    </tr>
+                                                </thead>
+                                                <div class="collapse">
+                                                    <tbody>
+                                                        <tr class="property_order_line">
+                                                            <td>
+                                                                <select id="property"
+                                                                        name="property_ids.property_name_id"
+                                                                        class="form-control
+                                                                               s_website_form_input">'
+                                                                    <option/>
+                                                                    <t t-foreach="property" t-as="property_option">
+                                                                        <option
+                                                                                t-att-value="property_option.id"
+                                                                                t-esc="property_option.name"/>
+                                                                    </t>
+                                                                </select>
+                                                            </td>
+                                                            <td class="owner" name="owner_id">
+                                                            </td>
+                                                            <td class="amount" name="rent_lease_amount">
+                                                            </td>
+                                                            <td>
+                                                                <button type="button"
+                                                                        class="btn fa fa-trash-o remove_line"
+                                                                        style="color: red;
+                                                                          padding: 0px;
+                                                                          margin-left: -6px;
+                                                                          margin-top: 6px;
+                                                                          margin-bottom:15px;"
+                                                                        name="delete"
+                                                                        aria-label="Delete row 1"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="add_extra_property d-none">
+                                                            <td>
+                                                                <select id="property"
+                                                                        name="property_ids.property_name_id"
+                                                                        class="form-control s_website_form_input">
+                                                                    <option/>
+                                                                    <t t-foreach="property" t-as="property">
+                                                                        <option t-att-value="property.id"
+                                                                                t-esc="property.name"/>
+                                                                    </t>
+                                                                </select>
+                                                            </td>
+                                                            <td class="owner">
+                                                            </td>
+                                                            <td class="amount">
+                                                            </td>
+                                                            <td>
+                                                                <button type="button"
+                                                                        class="btn fa fa-trash-o remove_line"
+                                                                        style="color: red;
+                                                                          padding: 0px;
+                                                                          margin-left: -6px;
+                                                                          margin-top: 6px;
+                                                                          margin-bottom:15px;"
+                                                                        name="delete"
+                                                                        aria-label="Delete row 1"/>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </div>
+                                            </table>
+                                        </div>
+                                        <div class="add_btn">
+                                            <button type="button"
+                                                    class="btn btn-info
+                                              add_total_project button-color"
+                                                    id="add_total_project"
+                                                    style="float: right;
+                                        margin-right: -15px;">
+                                                <i class="fa fa-plus"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix oe_login_buttons">
+                                <button
+                                        type="button"
+                                        class="btn submit btn-primary btn-block">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <!--    Tenant Thank-you Page-->
+    <record id="tenant_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/tenant-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">property_management.tenant_thanks</field>
+        <field name="arch" type="xml">
+            <t name="thanks" t-name="tenant_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container pt-5 pb-5">
+                            <h1>Thanks!!</h1>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="alert alert-success" role="status">
+                                        Your Order Has Been Placed...
+                                    </div>
+                                    <p>
+                                        We will get back to you shortly.....
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

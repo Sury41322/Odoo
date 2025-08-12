@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="weather_icon">
+        <Dropdown>
+            <div class="new_icon">
+                 <div class="icon_div">
+                     <div class="toggle-icon" role="button">
+                       <i id='weather_info' t-on-click="_onClick"
+                          class="fa fa-sun-o fa-1.5x"
+                          style="color: white; margin-bottom:10px; padding:13px;"
+                          role="img" aria-label="Weather Information"/>
+                     </div>
+                 </div>
+            </div>
+            <t t-set-slot="content">
+                 <div class="weather" style="width: 350px;
+                    height: 350px;">
+                     <div class="search row" style="display:inline;">
+                        <input type="text" name="city" id="place" placeholder="Enter city, country..."/>
+                         <!--                    style="margin-right:5px; padding:3px; border-radius:5px;"/>-->
+                         <button type="button" name="weather_data_place" t-on-click="_on_submit"
+                                 class="btn btn-primary">
+                            Search</button>
+                     </div>
+                     <center>
+                     <div class="m-3">
+                        <t class="weather_info">
+                            <div id="weather-container">
+                                <t t-if="state.weather">
+                                    <h1>
+                                        <t t-esc="state.weather.main.temp"/>°C
+                                    </h1>
+                                    <h3>
+                                        <t t-esc="state.weather.weather[0].main"/>
+                                    </h3>
+                                    <img t-att-src="state.icon"/>
+                                    <h5>
+                                        <t t-esc="state.weather.weather[0].description"/>
+                                        <span> in </span>
+                                        <t t-esc="state.weather.name"/>.
+                                    </h5>
+                                </t>
+                                <t t-else="">
+                                    <h1>Loading...</h1>
+                                </t>
+                            </div>
+                            <div class="time">
+                                 <span>Last Update :</span>
+                                <br/>
+                                <t t-esc="state.time"/>
+                             </div>
+                         </t>
+                     </div>
+                     </center>
+                 </div>
+             </t>
+        </Dropdown>
+    </t>
+</templates>
