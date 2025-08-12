@@ -38,8 +38,8 @@ class SystrayIcon extends Component {
             navigator.geolocation.getCurrentPosition(
             (pos)=>{
                 const crd = pos.coords;
-                 resolve({"latitude" : crd.latitude,
-                          "longitude" : crd.longitude})
+                resolve({"latitude" : crd.latitude,
+                    "longitude" : crd.longitude})
             })
             }
         })
@@ -70,6 +70,7 @@ class SystrayIcon extends Component {
         else{
             const result = await rpc("/weather/status",
                 {place : elm });
+            if (result){
             if (result.message == "city not found"){
                 this.dialogService.add(WarningDialog, {
                 title: "Warning: City not Found",
@@ -82,6 +83,13 @@ class SystrayIcon extends Component {
                 this.state.weather = result
                 this.state.icon = Weather_icons[(result.weather[0].main).toLowerCase()]
                 this.state.temp = this.state.weather.main.temp
+            }
+            }
+            else{
+                this.dialogService.add(WarningDialog, {
+                    title: "Warning: Connection Lost",
+                    message: "Connection Lost",
+                });
             }
         }
     }

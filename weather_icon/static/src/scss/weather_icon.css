@@ -1,7 +1,0 @@
-.search_row input,
-    .search_row button {
-    }
-    .search_row {
-        display: flex;
-        align-items: center; /* Aligns items vertically in the center */
-    }

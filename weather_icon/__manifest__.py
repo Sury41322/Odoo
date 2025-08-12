@@ -11,11 +11,10 @@ Long description of module's purpose
     'version': '0.1',
     'depends': ['base'],
     'assets': {
-'web.assets_backend': [
- 'weather_icon/static/src/js/weather_icon.js',
-    'weather_icon/static/src/xml/weather_icon.xml',
+        'web.assets_backend': [
+            'weather_icon/static/src/js/weather_icon.js',
+            'weather_icon/static/src/xml/weather_icon.xml',
 
-   ]
+        ]
+    }
 }
-}
-

@@ -16,11 +16,12 @@
                  <div class="weather m-2 p-2" style=" justify-content: center;">
                      <div class=" row ">
                          <div class="col-sm-8">
-                        <input type="text" class="form-control" name="city" id="place" placeholder="Enter city, country..."/>
+                        <input type="text" class="form-control" name="city" id="place"
+                               placeholder="Enter city, country..."/>
                              </div>
                          <div class="col-sm-4">
                          <button type="button" name="weather_data_place" t-on-click="_on_submit"
-                                 class="btn btn-primary text-center" >
+                                 class="btn btn-primary text-center">
                             Search</button>
                          </div>
                      </div>
@@ -30,7 +31,7 @@
                          <div class="col-sm-4">
                              <select name="metrics" id="temp_metrics" class="form-select" t-on-change="temp_metrics">
                               <option value="c" selected="True">°C</option>
-                              <option value="f">°F</option>
+                                 <option value="f">°F</option>
                             </select>
                          </div>
                      </div>
